@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Sources
+
+https://www.fin.gov.on.ca/en/economy/demographics/census/cenhi6.html#:~:text=Canadians%20Named%20More%20than%20200%20Ethnic%20Origins&text=Among%20other%20ethnic%20origins%2C%20English,%2C%20and%2011%25%20as%20French.
+
+https://www12.statcan.gc.ca/census-recensement/2016/ref/guides/006/98-500-x2016006-eng.cfm
+
+
+crowdsourcing   
+https://chuffed.org/us

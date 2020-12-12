@@ -1,63 +1,44 @@
-import * as React from "react";
-import logo from './logo.svg';
-import firebase from "firebase/app";
+import React, { useEffect, useState } from 'react';
 import "firebase/firestore";
-import {
-  FirebaseDatabaseProvider,
-  FirebaseDatabaseNode,
-} from "@react-firebase/database";
-import {
-  FirestoreCollection,
-  FirestoreProvider
-} from "@react-firebase/firestore";
+import { Row, Col } from 'react-flexbox-grid';
+import CompanyForm from './components/CompanyForm';
+import CompaniesList from './components/CompaniesList';
+import { getCompanyList } from './services/firestoreService';
 import './App.css';
 
 function App() {
-  const firebaseConfig = {
-    apiKey: "AIzaSyClcuxVE-KjdUm_O29OGgCU5RpmxbWJUxk",
-    authDomain: "human-spectrum-project.firebaseapp.com",
-    projectId: "human-spectrum-project",
-    storageBucket: "human-spectrum-project.appspot.com",
-    messagingSenderId: "747320818353",
-    appId: "1:747320818353:web:d2c5f61ac57ea711ea8090",
-    measurementId: "G-SK6ENKVX12"
-  };
-  // firebase.initializeApp(firebaseConfig);
-  // firebase.analytics();
-  
-  // var db = firestore();
+  const [companies, setCompanies] = useState([]);
+  useEffect(() => {
+    getCompanyList()
+      .then(querySnapshot => {
+        let result = []
+        querySnapshot.forEach(x => {
+          result.push(x.data())
+        })
+        setCompanies(result)
+      })
+      .catch(() => {});
+  }, []);
 
-  //   db.collection("users").add({
-  //     first: "Ada",
-  //     last: "Lovelace",
-  //     born: 1815
-  // })
-  // .then(function(docRef) {
-  //     console.log("Document written with ID: ", docRef.id);
-  // })
-  // .catch(function(error) {
-  //     console.error("Error adding document: ", error);
-  // });
   return (
     <div className="App">
-      <FirestoreProvider firebase={firebase} {...firebaseConfig}>
-      <FirestoreCollection
-            path={"users"}
-            limit={2}
-          >
-              {({ value }) => {
-                console.log('===',value)
-               if (value) {
-                return value.map(x => (
-                  <div>
-                    <pre>{x.email}</pre>
-                  </div>
-                ))
-               }
-             
-            }}
-          </FirestoreCollection>
-        </FirestoreProvider>
+      <Row>
+        <Col xs={6}>
+          <div  className="companies-list">
+            <CompaniesList
+              {...{
+                companies
+              }}
+            />
+          </div>
+        </Col>
+        <Col xs={6}>
+          <div  className="company-form">
+            <p>A <strong>visible minority</strong> is defined by the Government of Canada as "persons, other than aboriginal peoples, who are <strong>non-Caucasian</strong> in race or <strong>non-white</strong> in colour". The term is used primarily as a demographic category by Statistics Canada, in connection with that country's Employment Equity policies.</p>
+            <CompanyForm />
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 }
