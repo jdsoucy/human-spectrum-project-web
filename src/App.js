@@ -22,6 +22,9 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <div className="title">Human Spectrum Project</div>
+      </header>
       <Row>
         <Col xs={6}>
           <div  className="companies-list">

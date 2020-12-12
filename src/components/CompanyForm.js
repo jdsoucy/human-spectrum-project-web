@@ -30,6 +30,13 @@ export default () => {
         /* and other goodies */
       }) => (
         <form onSubmit={handleSubmit}>
+          <label>Company name</label>
+          <input
+            type="string"
+            name="companyName"
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
           {populationGroups.map(group => (
             <Row>
               <Col xs="8">

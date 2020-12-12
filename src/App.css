@@ -9,12 +9,30 @@ body{
 label{display:block;}
 ul, li{padding:0; margin: 0;}
 li{list-style: none; padding-bottom: 8px;}
+p{
+  margin: 0 ;
+  padding-bottom: 16px;
+}
 article{
   padding-bottom: 8px;
 }
+header{
+  position: fixed;
+  top:0;
+  left:0;right:0;
+  padding:16px;
+  background:#444;
+  box-shadow: 0 0px 10px rgba(0,0,0,.5);
+  opacity: .9;
+}
+header .title{
+  font-size: 14px; 
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .companies-list{
   background: #444444;
-  padding:16px 32px;
+  padding:24px 32px;
 }
 .company-form{
   background: #444444;
