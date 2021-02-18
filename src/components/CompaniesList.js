@@ -3,7 +3,6 @@ import { Row, Col } from 'react-flexbox-grid';
 
 
 export default ({ companies }) => {
-  console.log(companies)
   return (
     <>
       {companies.map((company, index) => {

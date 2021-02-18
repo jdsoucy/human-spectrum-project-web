@@ -37,4 +37,9 @@ header .title{
 .company-form{
   background: #444444;
   padding:32px;
+  position:absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -300px;
+  width: 600px;
 }
