@@ -15,13 +15,15 @@ export const addCompany = (payload) => {
     .add({
       created: firebase.firestore.FieldValue.serverTimestamp(),
       // createdBy: userId,
-      ethnicGroup: payload,
+      ...payload,
     });
 };
 
 export const getCompanyList = () => {
   return db.collection('companies')
-    .get();
+    .orderBy('created')
+    .get()
+    
 };
 
 // export const getGroceryListItems = groceryListId => {

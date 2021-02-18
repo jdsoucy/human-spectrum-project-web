@@ -6,6 +6,7 @@ import { populationGroups } from '../constants';
 
 export default () => {
   const onSubmit = (values) => {
+    console.log(values)
     FirestoreService.addCompany(values)
       .then(docRef => {
         console.log('new id', docRef.id)
@@ -16,7 +17,7 @@ export default () => {
 
   return (
     <Formik
-       initialValues={{ chinese: 0, black: 0, white: 0 }}
+       initialValues={{ monorityAdvance: "false" }}
        onSubmit={onSubmit}
      >
       {({
@@ -28,35 +29,99 @@ export default () => {
         handleSubmit,
         isSubmitting,
         /* and other goodies */
-      }) => (
-        <form onSubmit={handleSubmit}>
-          <label>Company name</label>
-          <input
-            type="string"
-            name="companyName"
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          {populationGroups.map(group => (
-            <Row>
-              <Col xs="8">
-                <label>{group.name}</label>
-              </Col>
-              <Col xs="4">
+      }) => {
+        console.log(values.monorityAdvance);
+        
+        return (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Company name</label>
+              <input
+                type="string"
+                name="companyName"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </div>
+            <div>
+              <label>Company type</label>
+              <input
+                type="string"
+                name="companyType"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </div>
+            <hr />
+            <div>
+              <label>
                 <input
-                  type="number"
-                  name={group.id}
+                  type="radio"
+                  name="monorityAdvance"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                />
-              </Col>
-            </Row>
-          ))}
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </form>
-      )}
+                  value="false"
+                  checked={values.monorityAdvance === 'false'}
+                /> Basic
+              </label>
+              {values.monorityAdvance === 'false' && (
+                <>
+                  <div>
+                    <label>White</label>
+                    <input
+                      type="string"
+                      name="ethnicGroup.white"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </div>
+                  <div>
+                    <label>Non-white</label>
+                    <input
+                      type="string"
+                      name="ethnicGroup.other"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="monorityAdvance"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value="true"
+                  checked={values.monorityAdvance === 'true'}
+                /> Advanced
+              </label>
+              {values.monorityAdvance === 'true' && populationGroups.map(group => (
+                <Row>
+                  <Col xs="8">
+                    <label>{group.name}</label>
+                  </Col>
+                  <Col xs="4">
+                    <input
+                      type="number"
+                      name={`ethnicGroup.${group.id}`}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                  </Col>
+                </Row>
+              ))}
+  
+            </div>
+            
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
+          </form>
+        )
+      }}
     </Formik>
   );
 }

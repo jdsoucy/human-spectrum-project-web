@@ -79,3 +79,7 @@ https://www12.statcan.gc.ca/census-recensement/2016/ref/guides/006/98-500-x20160
 
 crowdsourcing   
 https://chuffed.org/us
+
+react + firebase bookmark
+https://blog.logrocket.com/react-hooks-with-firebase-firestore/
+https://github.com/briandesousa/firebase-with-react-hooks/blob/logrocket-blog/src/App.js
